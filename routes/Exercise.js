@@ -10,5 +10,6 @@ router.post('/', [
     body('description').not().isEmpty().withMessage("Description is required."),
     body('difficulty').not().isEmpty().withMessage('Difficulty is required')
 ], exerciseCtrl.createExercise)
+router.delete("/", exerciseCtrl.removeExercise)
 
 module.exports = router

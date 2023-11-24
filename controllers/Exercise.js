@@ -17,7 +17,7 @@ exports.createExercise = async (req, res, next) => {
 
     const errors = validationResult(req)
 
-    if(!errors.isEmpty()) {
+    if (!errors.isEmpty()) {
       const error = new Error("Validation failed")
       error.errors = errors.array()
       error.statusCode = 422
@@ -33,8 +33,28 @@ exports.createExercise = async (req, res, next) => {
     })
     await exercise.save()
 
-    res.json({message: "Exercise created"})
+    res.json({ message: "Exercise created" })
   } catch (error) {
     next(error)
   }
+}
+
+exports.removeExercise = async (req, res, next) => {
+  try {
+    const { exerciseId } = req.body
+    await Exercise.findByIdAndDelete(exerciseId)
+    res.json({ message: "Exercise removed." })
+  } catch (error) {
+    next(error)
+  }
+}
+
+exports.editExercise = async (req, res, next) => {
+  try {
+    const { exerciseId } = req.body
+
+  } catch (error) {
+    next(error)
+  }
+
 }
