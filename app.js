@@ -6,11 +6,15 @@ const mongoose = require('mongoose')
 const app = express()
 
 app.use(express.json())
-// app.use(bodyParserErrorHandler())
 
 //routes
 const exerciseRoutes = require('./routes/Exercise')
+const exercisesGroupRoutes = require('./routes/ExercisesGroup')
+const calendarRoutes = require('./routes/Calendar')
+
 app.use('/exercise', exerciseRoutes)
+app.use("/exercise/group", exercisesGroupRoutes)
+app.use("/calendar", calendarRoutes)
 
 //error handling middleware
 app.use((error, req, res, next) => {
