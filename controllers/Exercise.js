@@ -73,3 +73,12 @@ exports.removeExercise = async (req, res, next) => {
   }
 }
 
+exports.editExercise = async (req, res, next) => {
+  try {
+    const { _id, name, description, imgUrl, difficulty } = req.body
+    await Exercise.findByIdAndUpdate(_id, {name, description, imgUrl, difficulty})
+    res.json({message: 'Exercise edited succesfully.'})
+  } catch (error) {
+    next(error)
+  }
+}
